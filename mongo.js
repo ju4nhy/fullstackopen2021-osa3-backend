@@ -27,13 +27,13 @@ const person = new Person({
 
 Person.find({}).then(result => {
   if (person.name === undefined || person.phone === undefined) {
-    console.log('Phonebook:') 
+    console.log('Phonebook:')
     result.forEach(person => {
       console.log(person.name, person.phone)
       mongoose.connection.close()
     })
   } else {
-    person.save({person}).then(persons => {
+    person.save({ person }).then(persons => {
       console.log(`added ${persons.name} number ${persons.phone} to phonebook`)
       mongoose.connection.close()
     })
@@ -42,8 +42,5 @@ Person.find({}).then(result => {
 
 
 
- 
 
-
- 
 

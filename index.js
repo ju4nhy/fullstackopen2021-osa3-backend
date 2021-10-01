@@ -20,7 +20,7 @@ morgan.token('body', (request, response) => JSON.stringify(request.body || {}))
 morgan.token('body', function(request, response) {
   const persondata = JSON.stringify(request.body)
   return persondata
-});
+})
 
 app.use(morgan(function (tokens, request, response) {
   return [
@@ -42,28 +42,27 @@ app.get('/api/persons', (request, response, next) => {
   Person.find({}).then(persons => {
     response.json(persons)
   })
-  .catch(error => next(error));
+    .catch(error => next(error))
 })
 
 // Hae puhelinluettelon tiedot
 app.get('/info', (request, response, next) => {
   const requestTime = new Date().toString()
-  
   Person.countDocuments({}).then(persons => {
-    response.send(`<p>Puhelinluettelossa on tällä hetkellä ${persons} kontaktin tiedot</p> ${requestTime}`);
+    response.send(`<p>Puhelinluettelossa on tällä hetkellä ${persons} kontaktin tiedot</p> ${requestTime}`)
   })
-  .catch(error => next(error));
+    .catch(error => next(error))
 })
 
 // Hae kontaktin tiedot
 app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id).then(person => {
-      if (person) {
-        response.json(person)
-      } else {
-        response.status(404).end()
-      }
-    })
+    if (person) {
+      response.json(person)
+    } else {
+      response.status(404).end()
+    }
+  })
     .catch(error => next(error))
 })
 
@@ -88,7 +87,7 @@ app.post('/api/persons', (request, response, next) => {
   person.save().then(savedPerson => savedPerson.toJSON())
     .then(savedJSONFormattedPerson => {
       response.json(savedJSONFormattedPerson)
-    }) 
+    })
     .catch(error => next(error))
 })
 
