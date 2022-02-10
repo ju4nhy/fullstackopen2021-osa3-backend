@@ -8,8 +8,7 @@ if (process.argv.length<3) {
 
 const password = process.argv[2]
 
-const url =
-  `mongodb+srv://fullstack:${password}@puhelinluettelo.kima0.mongodb.net/puhelinluettelo?retryWrites=true&w=majority`
+const url = `mongodb+srv://fullstack:${password}@puhelinluettelo.kima0.mongodb.net/puhelinluettelo?retryWrites=true&w=majority`
 
 mongoose.connect(url)
 
@@ -39,8 +38,3 @@ Person.find({}).then(result => {
     })
   }
 })
-
-
-
-
-

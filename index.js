@@ -9,14 +9,6 @@ app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
 
-// const password = process.argv[2]
-// const url = `mongodb+srv://fullstack:${password}@puhelinluettelo.kima0.mongodb.net/puhelinluettelo?retryWrites=true&w=majority`
-
-/* TOINEN TOIMIVA TAPA
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
-morgan.token('body', (request, response) => JSON.stringify(request.body || {}))
-**********************/
-
 morgan.token('body', function(request, response) {
   const persondata = JSON.stringify(request.body)
   return persondata
